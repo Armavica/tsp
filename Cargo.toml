@@ -11,3 +11,6 @@ rand = "*"
 [[bin]]
 name = "tsp"
 doc = false
+
+[profile.test]
+opt-level = 2

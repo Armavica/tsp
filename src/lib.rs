@@ -38,6 +38,15 @@ impl<N: Float + fmt::Debug> TSP<N> {
             Self::exchange(path, a + bc, b, c);
         }
     }
+    /// Returns the length of the tour.
+    pub fn tour_length(&self, tour: &[usize]) -> N {
+        let n = tour.len();
+        let mut distance = N::zero();
+        for i in 0..tour.len() {
+            distance = distance + self.distances[tour[i]][tour[(i + 1) % n]];
+        }
+        distance
+    }
     /// Creates a problem from a list of 2D real coordinates.
     pub fn new_euc2d(vertices: &[(N, N)]) -> Self {
         let mut distances = Vec::new();
@@ -78,11 +87,7 @@ impl<N: Float + fmt::Debug> TSP<N> {
                 }
             }
         }
-        let mut distance = N::zero();
-        for i in 0..path.len() {
-            distance = distance + self.distances[path[i]][path[(i + 1) % n]];
-        }
-        (distance, path)
+        (self.tour_length(&path), path)
     }
     /// Returns a 3-opt tour and its score, from an optionally specified
     /// starting tour.
@@ -164,11 +169,7 @@ impl<N: Float + fmt::Debug> TSP<N> {
                 }
             }
         }
-        let mut distance = N::zero();
-        for i in 0..path.len() {
-            distance = distance + self.distances[path[i]][path[(i + 1) % n]];
-        }
-        (distance, path)
+        (self.tour_length(&path), path)
     }
 }
 
