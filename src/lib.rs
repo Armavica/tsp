@@ -38,6 +38,10 @@ impl<N: Float + fmt::Debug> TSP<N> {
             Self::exchange(path, a + bc, b, c);
         }
     }
+    /// Returns the distance between `a` and `b`.
+    pub fn distance(&self, a: usize, b: usize) -> N {
+        self.distances[a][b]
+    }
     /// Returns the length of the tour.
     pub fn tour_length(&self, tour: &[usize]) -> N {
         let n = tour.len();
