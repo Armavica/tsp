@@ -9,6 +9,7 @@ use std::cmp;
 use std::fmt;
 
 /// Structure to represent a Travelling Salesman Problem.
+#[derive(Debug)]
 pub struct TSP<N: Float> {
     distances: Vec<Vec<N>>,
 }
