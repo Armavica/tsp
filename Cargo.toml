@@ -1,0 +1,13 @@
+[package]
+authors = ["Virgile Andreani <virgile.andreani@anbuco.fr>"]
+name = "tsp"
+version = "0.1.0"
+
+[dependencies]
+num = "*"
+quickcheck = "*"
+rand = "*"
+
+[[bin]]
+name = "tsp"
+doc = false
